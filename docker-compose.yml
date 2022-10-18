@@ -1,0 +1,34 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  fox_mysql:
+    image: mysql
+    restart: unless-stopped
+#    expose:
+#      - 3306
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 16uK0r5Rd&kd
+      MYSQL_DATABASE: foxbooks2
+      MYSQL_USER: foxbooks3
+      MYSQL_PASSWORD: 16uK0r5Rd&kd
+    volumes:
+      - fox_mysql_data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 8082:8080
+    depends_on:
+      - fox_mysql
+
+volumes:
+  fox_mysql_data:
+
+networks:
+  default:
+    driver: bridge

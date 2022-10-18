@@ -1,0 +1,13 @@
+{% extends 'admin/change_list.html' %}
+
+{% block object-tools %}
+    <div style="display: flex; justify-content: space-around">
+        <form action="add_covers/" method="POST">
+            {% csrf_token %}
+            <button type="submit">Add covers to books with no cover</button>
+        </form>
+
+    </div>
+    <br />
+    {{ block.super }}
+{% endblock %}
